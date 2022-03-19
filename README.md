@@ -1,46 +1,119 @@
-# Getting Started with Create React App
+# Praticando Rotas em ReactJs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Praticando durando o curso B7Web.
+Feito por [Alenilson Souza](https://alenilsonsouza.com.br).
 
-## Available Scripts
+### Para instalar
+- `npm install`
 
-In the project directory, you can run:
+### Para rodar
+- `npm start`
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 00 - Criando o projeto com Typescript
+```
+npx create-react-app react_dom --template typescript
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 01 - Instalação da Biblioteca React Router Dom
+```
+npm install react-router-dom
+```
 
-### `npm test`
+### Importando o BrowerRouter no index
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+É importante envolver todo o **App** no **BrowserRouter** para as rotas funcionarem em toda a aplicação.
 
-### `npm run build`
+```javascript
+import { BrowserRouter } from 'react-router-dom'
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+No index envolver o componente `<App />` dentro do BrowserRouter. Ex.:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```javascript
+<BrowserRouter>
+  <App />
+</BrowserRouter>
+```
+## 02 - Criando rotas
+No ``App.tsx`` importar os recursos pra montar as regras das rotas:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```javascript
+import { Routes, Route } from 'react-router-dom';
+```
+Importar as páginas:
+```javascript
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Services } from './pages/Services';
+import { Contact } from './pages/Contact';
+```
+Dentro do componente onde será exibido o conteúdo das páginas criar as regras:
+```javascript
+<Routes>
+  <Route path="/" element={<Home />} />
+  <Route path='/sobre' element={<About />} />
+  <Route path="/servicos" element={<Services />} />
+  <Route path="/contato" element={<Contact />} />
+</Routes>
+```
+## 03 - Criando grupos de rotas
 
-### `npm run eject`
+```javascript
+<Route path="/sobre" element={<About />} />
+<Route path="/sobre/fulano" element={<AboutFulano />} />
+<Route path="/sobre/ciclano" element={<AboutCiclano />} />
+```
+## 04 - Rota de 404 (Página não encontrada)
+Caso digite ou procure uma rota inexistente podemos criar uma rota coringa no final das demais rotas direcionando para uma página com a informação 'Página não encontrada':
+```javascript
+<Route path="*" element={<NotFound />} />
+```
+## 05 - Links
+Primeiro precisamos importar o recurso `Link` do React Router Dom:
+```javascript
+import { Link } from 'react-router-dom';
+```
+Colocando os links:
+```javascript
+<ul className="menu">
+    <li><Link to="/">Home</Link></li>
+    <li><Link to="/sobre">Sobre</Link></li>
+    <li><Link to="/servicos">Serviços</Link></li>
+    <li><Link to="/contato">Contato</Link></li>
+</ul>
+```
+Usando o recurso `Link` veremos que ao acessar será carregado o conteúdo da página sem atualizar a página.
+## 06 - Rotas com valores dinâmicos
+Para acrescentar uma rota dinânimca é preciso adiciona um ou mais parâmetros precedido com o sinal de (:) dois-pontos.
+```javascript
+<Route path="/sobre/:slug" element={<AboutItem />} />
+```
+O parâmetro `:slug` é dinânimo e pode receber qualquer valor.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Receber os valores dos parâmetros enviados pela rota
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+No `AboutItem` vamos importar um Hoock quer recebe todos os parâmetros enviados pela rota:
+```javascript
+import { useParams } from "react-router-dom"
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Exemplo de uso do Hoock `useParams`:
+```javascript
+export const AboutItem = () => {
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    const params = useParams();
 
-## Learn More
+    return (
+        <div>
+            <h2>Página de {params.slug}</h2>
+        </div>
+    )
+}
+```
+Sugestões de uso:
+```javascript
+<h2>Página de {params.slug?.toUpperCase()} ({params.slug?.length})</h2>
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
