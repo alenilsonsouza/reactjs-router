@@ -1,14 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { AboutItem } from './pages/AboutItem';
-import { Services } from './pages/Services';
-import { Contact } from './pages/Contact';
-import { NotFound } from './pages/NotFound';
-
 import { Nav } from './components/Nav';
-
 import  './App.css';
+import { MainRoutes } from './routes/MainRoutes';
 
 const App = () => {
   return (
@@ -22,14 +14,7 @@ const App = () => {
       <Nav />
       <section className="content">
         <div className="container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path='/sobre' element={<About />} />
-            <Route path="/sobre/:slug" element={<AboutItem />} />
-            <Route path="/servicos" element={<Services />} />
-            <Route path="/contato" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <MainRoutes />
         </div>
       </section>
       <footer>
