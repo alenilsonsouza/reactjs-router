@@ -7,7 +7,7 @@ const App = () => {
     <div>
       <header>
         <div className="container">
-          <h1>Brincando com Rotas (Routers)</h1>
+          <h1>Trabalhando com rotas</h1>
           <span>by Alenilson Souza</span>
         </div>
       </header>
@@ -19,7 +19,7 @@ const App = () => {
       </section>
       <footer>
         <div className="container">
-          Praticando em aula...
+          Feito na prática
         </div>
       </footer>
     </div>
