@@ -37,7 +37,7 @@ header .container span {
 }
 footer {
   height: 80px;
-  background-color: blueviolet;
+  background-color: #000;
 }
 footer .container{
   height: 100%;
