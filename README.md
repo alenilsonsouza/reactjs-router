@@ -95,12 +95,12 @@ O parâmetro `:slug` é dinânimo e pode receber qualquer valor.
 
 ### Receber os valores dos parâmetros enviados pela rota
 
-No `AboutItem` vamos importar um Hoock quer recebe todos os parâmetros enviados pela rota:
+No `AboutItem` vamos importar um Hook quer recebe todos os parâmetros enviados pela rota:
 ```javascript
 import { useParams } from "react-router-dom"
 ```
 
-Exemplo de uso do Hoock `useParams`:
+Exemplo de uso do Hook `useParams`:
 ```javascript
 export const AboutItem = () => {
 
