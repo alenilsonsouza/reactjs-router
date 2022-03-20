@@ -3,6 +3,8 @@
 Praticando durando o curso B7Web.
 Feito por [Alenilson Souza](https://alenilsonsouza.com.br).
 
+- Apresentação modelo: <https://reactroutes.alenilsonsouza.com.br/>
+
 ### Para instalar
 - `npm install`
 
